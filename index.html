@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FFF7F4">
+
+    <title>Pour toi</title>
+    <meta name="description" content="Une lettre. Rien de plus, rien à répondre.">
+
+    <!-- Partage (si tu l'héberges, le lien affichera ça) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Une lettre pour toi">
+    <meta property="og:description" content="Rien de grave. Juste pour toi.">
+    <meta property="og:locale" content="fr_FR">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌸</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ── Décor : lumière + grain ── -->
+    <div class="decor" aria-hidden="true">
+        <span class="par par--far">
+            <span class="bloom bloom--1"></span>
+            <span class="bloom bloom--2"></span>
+        </span>
+        <span class="par par--near">
+            <span class="bloom bloom--3"></span>
+        </span>
+        <span class="grain"></span>
+    </div>
+
+    <!-- ── Pétales ── -->
+    <canvas id="petals" aria-hidden="true"></canvas>
+
+    <!-- ── Fil de progression ── -->
+    <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+    <main class="stage">
+
+        <!-- ═════════════ SCÈNE 1 · L'enveloppe ═════════════ -->
+        <section class="scene scene--intro is-active" id="scene-intro" aria-label="Enveloppe cachetée">
+            <p class="eyebrow reveal" style="--i:0">Il y a une lettre pour toi</p>
+            <h1 class="display" data-nom>Rouchidiyath</h1>
+
+            <div class="env-float reveal" style="--i:2">
+              <div class="envelope" id="envelope">
+                <div class="env__back"></div>
+
+                <div class="env__letter" id="envLetter">
+                    <span class="env__line"></span>
+                    <span class="env__line"></span>
+                    <span class="env__line env__line--short"></span>
+                    <svg class="env__mark" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <path d="M12 2c3.4 4.6 3.4 9.4 0 14-3.4-4.6-3.4-9.4 0-14Z" />
+                    </svg>
+                </div>
+
+                <div class="env__pocket"></div>
+                <div class="env__flap" id="envFlap"></div>
+
+                <button class="seal" id="seal" type="button" aria-label="Maintenir le sceau pour ouvrir la lettre">
+                    <svg class="seal__ring" viewBox="0 0 80 80" aria-hidden="true">
+                        <circle class="seal__track" cx="40" cy="40" r="36" />
+                        <circle class="seal__value" id="sealRing" cx="40" cy="40" r="36" />
+                    </svg>
+                    <span class="seal__wax"></span>
+                    <span class="seal__mono">R</span>
+                </button>
+              </div>
+            </div>
+
+            <p class="hint reveal" style="--i:3" id="sealHint">
+                <span class="hint__dot"></span> Maintiens le sceau pour l’ouvrir
+            </p>
+        </section>
+
+        <!-- ═════════════ SCÈNE 2 · La lettre ═════════════ -->
+        <section class="scene scene--letter" id="scene-letter" aria-label="La lettre">
+            <article class="paper reveal" style="--i:0">
+                <header class="paper__head">
+                    <p class="eyebrow reveal" style="--i:1">Une lettre</p>
+                    <h2 class="display display--sm" data-nom>Rouchidiyath</h2>
+                    <div class="rule reveal" style="--i:3" aria-hidden="true">
+                        <span class="rule__line"></span>
+                        <svg viewBox="0 0 56 10" width="52" height="9">
+                            <circle cx="4" cy="5" r="1" fill="currentColor" opacity=".5" />
+                            <path d="M28 .8 31.2 5 28 9.2 24.8 5Z" fill="currentColor" opacity=".85" />
+                            <circle cx="52" cy="5" r="1" fill="currentColor" opacity=".5" />
+                        </svg>
+                        <span class="rule__line"></span>
+                    </div>
+                </header>
+
+                                <div class="paper__body">
+                    <p class="lm">Salut toi,</p>
+
+                    <p class="lm">
+                        Bon, je t’écris une lettre. Oui, une vraie. À ce rythme, la prochaine
+                        étape, c’est de t’envoyer un pigeon voyageur. J’espère au moins que tu
+                        apprécies l’effort. 😂
+                    </p>
+
+                    <p class="lm">
+                        Je ne vais pas te refaire le discours que tu connais déjà. Tu sais que
+                        je t’aime bien, donc inutile de tourner autour du pot comme un
+                        politicien en campagne.
+                    </p>
+
+                    <p class="lm">
+                        Mais je me suis dit que, pour une fois, j’allais prendre le temps de
+                        t’écrire quelque chose. Pas parce que tu es parfaite, hein. On a tous
+                        nos défauts, et je préfère ne pas ouvrir ce dossier pour le moment. 😌
+                    </p>
+
+                    <p class="lm">
+                        J’aime bien nos discussions, tes réactions, nos délires et cette
+                        facilité qu’on a à parler. Même quand tu racontes n’importe quoi, ce
+                        qui arrive probablement plus souvent que tu ne veux l’admettre,
+                        j’arrive quand même à apprécier le moment.
+                    </p>
+
+                    <p class="lm">
+                        Et puis, il faut reconnaître que tu as réussi à te faire une petite
+                        place dans mes journées. Je ne sais pas encore si je dois te féliciter
+                        pour cet exploit ou m’inquiéter pour mon propre jugement. 😂
+                    </p>
+
+                    <p class="lm">
+                        Bref, je ne suis pas en train de te demander de choisir les couleurs
+                        de notre maison, ni de préparer un discours pour notre cinquantième
+                        anniversaire de mariage. Calme-toi, on n’en est pas là&nbsp;!
+                    </p>
+
+                    <p class="lm">
+                        Je voulais juste te faire sourire, te rappeler que je t’apprécie et te
+                        laisser un petit souvenir qui ne soit ni un mème envoyé à minuit ni un
+                        «&nbsp;tu fais quoi&nbsp;?&nbsp;» sans imagination.
+                    </p>
+
+                    <p class="lm">
+                        Et surtout, ne prends pas cette lettre comme une preuve que tu as
+                        gagné. La compétition continue. 😌
+                    </p>
+
+                    <p class="lm letter-sign">
+                        Signé : L'IMPERATOR, le futur président des Etats-Unis d'Amérique 😎
+                     ❤️
+                    </p>
+
+                    <p class="lm letter-ps">
+                        <strong>PS</strong> — Tu as le droit de sourire en lisant cette lettre.
+                        En revanche, prendre la grosse tête est strictement interdit.
+                    </p>
+                </div>
+
+                <footer class="paper__foot reveal" style="--i:20">
+                    <span class="paper__date" data-date>Écrite un soir, en pensant à toi</span>
+                    <span class="signature" data-signature></span>
+                </footer>
+            </article>
+
+            <button class="btn reveal" style="--i:23" type="button" id="toNotes">
+                Il y a autre chose
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                    <path d="M5 12h13M13 6.5 18.5 12 13 17.5" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- ═════════════ SCÈNE 3 · Les trois cartes ═════════════ -->
+        <section class="scene scene--notes" id="scene-notes" aria-label="Trois petits mots">
+            <p class="eyebrow reveal" style="--i:0">Petits mots</p>
+            <h2 class="display display--sm">Trois choses</h2>
+            <p class="lead reveal" style="--i:2">Retourne les cartes, une par une.</p>
+
+            <div class="cards">
+                <button class="card reveal" style="--i:3" type="button" data-card aria-label="Retourner la carte 1">
+                    <span class="card__inner">
+                        <span class="card__face card__face--front">
+                            <span class="card__num">I</span>
+                            <span class="card__petal" aria-hidden="true"></span>
+                        </span>
+                        <span class="card__face card__face--back">
+                            <span class="card__title">Ton rire</span>
+                            <span class="card__text">Il tombe toujours au bon moment. Contagieux, en plus.</span>
+                        </span>
+                    </span>
+                </button>
+
+                <button class="card reveal" style="--i:4" type="button" data-card aria-label="Retourner la carte 2">
+                    <span class="card__inner">
+                        <span class="card__face card__face--front">
+                            <span class="card__num">II</span>
+                            <span class="card__petal" aria-hidden="true"></span>
+                        </span>
+                        <span class="card__face card__face--back">
+                            <span class="card__title">Ta façon d’écouter</span>
+                            <span class="card__text">Tu ne fais jamais semblant. C’est rare, et ça se sent.</span>
+                        </span>
+                    </span>
+                </button>
+
+                <button class="card reveal" style="--i:5" type="button" data-card aria-label="Retourner la carte 3">
+                    <span class="card__inner">
+                        <span class="card__face card__face--front">
+                            <span class="card__num">III</span>
+                            <span class="card__petal" aria-hidden="true"></span>
+                        </span>
+                        <span class="card__face card__face--back">
+                            <span class="card__title">Ce truc-là</span>
+                            <span class="card__text">Je ne sais pas le nommer. Mais c’est pour ça que j’ai
+                                écrit.</span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+
+            <p class="counter reveal" style="--i:6"><span id="cardCount">0</span> / 3</p>
+
+            <button class="btn btn--locked" type="button" id="toEnd" disabled>
+                Une dernière chose
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                    <path d="M5 12h13M13 6.5 18.5 12 13 17.5" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- ═════════════ SCÈNE 4 · La fin ═════════════ -->
+        <section class="scene scene--end" id="scene-end" aria-label="Mot de la fin">
+            <div class="end">
+                <p class="eyebrow reveal" style="--i:0">Voilà</p>
+                <h2 class="display display--sm">C’était tout.</h2>
+
+                <p class="lead reveal" style="--i:2">
+                    Pas de question à la fin. Pas de pression, pas de compte à rebours.<br>
+                    Juste une lettre, pour toi.
+                </p>
+
+                <button class="rosebtn" id="rose" type="button" aria-label="Maintenir pour découvrir la fin">
+                    <svg class="rosebtn__ring" viewBox="0 0 96 96" aria-hidden="true">
+                        <circle class="rosebtn__track" cx="48" cy="48" r="44" />
+                        <circle class="rosebtn__value" id="roseRing" cx="48" cy="48" r="44" />
+                    </svg>
+                    <span class="rosebtn__flower" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" width="34" height="34">
+                            <g fill="currentColor">
+                                <path d="M24 4c4.6 6 4.6 12.4 0 18.4C19.4 16.4 19.4 10 24 4Z" opacity=".95" />
+                                <path d="M24 44c-4.6-6-4.6-12.4 0-18.4 4.6 6 4.6 12.4 0 18.4Z" opacity=".95" />
+                                <path d="M4 24c6-4.6 12.4-4.6 18.4 0-6 4.6-12.4 4.6-18.4 0Z" opacity=".8" />
+                                <path d="M44 24c-6 4.6-12.4 4.6-18.4 0 6-4.6 12.4-4.6 18.4 0Z" opacity=".8" />
+                            </g>
+                            <circle cx="24" cy="24" r="3.4" fill="#fff" opacity=".85" />
+                        </svg>
+                    </span>
+                </button>
+                <p class="hint hint--small" id="roseHint">
+                    <span class="hint__dot"></span> Maintiens la fleur
+                </p>
+
+                <div class="ps" id="ps" aria-live="polite">
+                    <p>
+                        <strong>PS</strong> — Si un jour tu veux la relire, elle sera toujours là.
+                        Et moi aussi.
+                    </p>
+                </div>
+
+                <button class="btn btn--ghost reveal" style="--i:5" type="button" id="replay">
+                    Relire la lettre
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <noscript>
+        <div class="noscript">
+            <p>Cette page a besoin de JavaScript pour s’ouvrir. Mais la lettre, la voici&nbsp;:</p>
+            <p>Salut toi. Je ne vais pas te sortir de grande déclaration. Juste te dire que depuis que
+                tu es là, mes journées sont un peu plus légères. Il n’y a rien à répondre, rien à
+                décider. Juste une lettre, pour toi.</p>
+        </div>
+    </noscript>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
